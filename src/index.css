@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 250 250 249;
+    --surface: 255 255 255;
+    --surface-2: 244 244 245;
+    --border: 228 228 231;
+    --fg: 24 24 27;
+    --muted: 82 82 91;
+    --subtle: 138 138 146;
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg: 9 9 11;
+    --surface: 17 17 19;
+    --surface-2: 26 26 29;
+    --border: 39 39 43;
+    --fg: 237 237 240;
+    --muted: 161 161 170;
+    --subtle: 113 113 122;
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-fg text-bg;
+  }
+
+  :focus-visible {
+    @apply rounded-md outline-none ring-2 ring-fg/35 ring-offset-2 ring-offset-bg;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply font-mono text-2xs uppercase tracking-[0.18em] text-subtle;
+  }
+
+  .surface-card {
+    @apply rounded-xl border border-border bg-surface transition-colors duration-300;
+  }
+
+  .hairline-grid {
+    background-image: linear-gradient(to right, rgb(var(--border) / 0.55) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--border) / 0.55) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
